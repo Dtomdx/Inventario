@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: mypostgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5433:5432"
+    volumes:
+      # Opción 1: Recomendada para PostgreSQL 18+
+      - ./postgres-data:/var/lib/postgresql
+      
+      # O Opción 2: Especificando directorio de datos explícitamente
+      # - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
