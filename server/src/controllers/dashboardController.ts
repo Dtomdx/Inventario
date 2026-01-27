@@ -1,4 +1,4 @@
-import {Request, Response} from "express"
+import type {Request, Response} from "express"
 import { PrismaClient } from "@prisma/client/extension"
 
 const prisma = new PrismaClient()
@@ -36,7 +36,7 @@ export const getDashboardMetrics = async(req: Request, res: Response):Promise<vo
             }
         })
         const expenseByCategory = expenseByCategorySummaryRaw.map(
-            (item) => ({
+            (item: any) => ({
                 ...item,
                 ammount: item.amount.toString()
             })
