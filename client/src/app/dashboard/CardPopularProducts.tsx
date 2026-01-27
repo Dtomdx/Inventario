@@ -1,7 +1,7 @@
 import { useGetDashboardMetricsQuery } from "@/app/state/api";
 import { ShoppingBag } from "lucide-react";
 
-//import Rating from "../(components)/Rating";
+import Rating from "../(components)/Rating";
 //import Image from "next/image";
 
 const CardPopularProducts = () => {
@@ -18,7 +18,7 @@ const CardPopularProducts = () => {
           </h3>
           <hr />
           <div className="overflow-auto h-full">
-            {dashboardMetrics?.popularProducts.map((product) => (
+            {dashboardMetrics?.popularProducts.map((product: any) => (
               <div
                 key={product.productId}
                 className="flex items-center justify-between gap-3 px-5 py-7 border-b"
@@ -34,7 +34,7 @@ const CardPopularProducts = () => {
                         ${product.price}
                       </span>
                       <span className="mx-2">|</span>
-                      <div>rating</div>
+                      <Rating rating={product.rating || 0} />
                     </div>
                   </div>
                 </div>
