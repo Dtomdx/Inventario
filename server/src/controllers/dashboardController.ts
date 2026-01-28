@@ -18,6 +18,7 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });  // ← PASA EL ADAPTER
 
 export const getDashboardMetrics = async(req: Request, res: Response):Promise<void> => {
+    
     try {
         const popularProducts = await prisma.products.findMany({
             take: 15,
@@ -25,6 +26,7 @@ export const getDashboardMetrics = async(req: Request, res: Response):Promise<vo
                 stockQuantity: "desc",
             }
         })
+        
         const salesSummary = await prisma.salesSummary.findMany({
             take: 5,
             orderBy: {
@@ -55,12 +57,13 @@ export const getDashboardMetrics = async(req: Request, res: Response):Promise<vo
                 ammount: item.amount.toString()
             })
         )
-        res.json({
-            popularProducts,
-            salesSummary,
-            purchaseSummary,
-            expenseSummary,
-            expenseByCategorySummary,
+        
+        res.status(201).json({
+            popularProducts: popularProducts,
+            salesSummary: salesSummary,
+            purchaseSummary: purchaseSummary,
+            expenseSummary: expenseSummary,
+            //expenseByCategorySummary: expenseByCategorySummary
         })
     } catch (error) {
         res.status(500).json({message: "Error retrieving dashboard metrics"})

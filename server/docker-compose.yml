@@ -11,7 +11,8 @@ services:
       - "5433:5432"
     volumes:
       # Opción 1: Recomendada para PostgreSQL 18+
-      - ./postgres-data:/var/lib/postgresql/data
+      #- ./postgres-data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
       
       # O Opción 2: Especificando directorio de datos explícitamente
       # - postgres_data:/var/lib/postgresql/data
