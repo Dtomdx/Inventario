@@ -54,7 +54,7 @@ export const getDashboardMetrics = async(req: Request, res: Response):Promise<vo
         const expenseByCategorySummary = expenseByCategorySummaryRaw.map(
             (item: any) => ({
                 ...item,
-                ammount: item.amount.toString()
+                amount: item.amount.toString()
             })
         )
         
@@ -63,7 +63,7 @@ export const getDashboardMetrics = async(req: Request, res: Response):Promise<vo
             salesSummary: salesSummary,
             purchaseSummary: purchaseSummary,
             expenseSummary: expenseSummary,
-            //expenseByCategorySummary: expenseByCategorySummary
+            expenseByCategorySummary: expenseByCategorySummary
         })
     } catch (error) {
         res.status(500).json({message: "Error retrieving dashboard metrics"})
